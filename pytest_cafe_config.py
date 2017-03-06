@@ -5,6 +5,7 @@ import os
 from cafe.configurator.managers import TestEnvManager
 from cafe.common.reporting import cclogging
 import pytest
+from cafe.drivers.unittest.runner import UnittestRunner
 
 
 def pytest_addoption(parser):
@@ -33,8 +34,7 @@ def pytest_configure(config):
         test_repo_package_name='tests')
     test_env.finalize()
     cclogging.init_root_log_handler()
-    #self._log = cclogging.getLogger(
-    #    cclogging.get_object_namespace(self.__class__))
+    UnittestRunner.print_mug_and_paths(test_env)
 
 
 @pytest.fixture
