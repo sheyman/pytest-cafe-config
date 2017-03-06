@@ -14,27 +14,31 @@ def pytest_addoption(parser):
         '--cafe-proj',
         action='store',
         dest='cafe_proj',
-        help='Name of the Cafe project'
+        help='Name of the project to test'
     )
 
     group.addoption(
         '--cafe-config',
         action='store',
         dest='cafe_config',
-        help='Name of the Cafe configuration file to use'
+        help='Name of the Cafe configuration file for the project to use'
     )
-
-    parser.addini('HELLO', 'Dummy pytest.ini setting')
 
 
 def pytest_configure(config):
-    test_env = TestEnvManager(
-        config.getoption('cafe_proj'),
-        config.getoption('cafe_config') + '.config',
-        test_repo_package_name='tests')
-    test_env.finalize()
-    cclogging.init_root_log_handler()
-    UnittestRunner.print_mug_and_paths(test_env)
+    
+    if config.getoption('cafe_proj') and config.getoption('cafe_config'):
+        # Setting test repo path variables to pass checks
+        # to validate if the test repos exist
+        os.environ['CAFE_ALLOW_MANAGED_ENV_VAR_OVERRIDES'] = '1'
+        os.environ['CAFE_TEST_REPO_PATH'] = config.args[0]
+        test_env = TestEnvManager(
+            config.getoption('cafe_proj'),
+            config.getoption('cafe_config') + '.config',
+            test_repo_package_name=config.args[0])
+        test_env.finalize()
+        cclogging.init_root_log_handler()
+        UnittestRunner.print_mug_and_paths(test_env)
 
 
 @pytest.fixture
