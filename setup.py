@@ -23,7 +23,7 @@ setup(
     description='Allows the use of the cafe configuration and logging with pytest',
     long_description=read('README.rst'),
     py_modules=['pytest_cafe_config'],
-    install_requires=['pytest>=2.9.2'],
+    install_requires=['pytest>=2.9.2, opencafe'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Framework :: Pytest',
