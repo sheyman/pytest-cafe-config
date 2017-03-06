@@ -5,10 +5,6 @@ pytest-cafe-config
     :target: https://travis-ci.org/dwalleck/pytest-cafe-config
     :alt: See Build Status on Travis CI
 
-.. image:: https://ci.appveyor.com/api/projects/status/github/dwalleck/pytest-cafe-config?branch=master
-    :target: https://ci.appveyor.com/project/dwalleck/pytest-cafe-config/branch/master
-    :alt: See Build Status on AppVeyor
-
 Allows the use of the Cafe-style command line args
 
 ----
