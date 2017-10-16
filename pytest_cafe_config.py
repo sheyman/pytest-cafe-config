@@ -43,4 +43,8 @@ def pytest_configure(config):
 
 @pytest.fixture
 def bar(request):
+    """Docstring for this fixture
+
+    Document this fixture here.
+    """
     return request.config.option.cafe_proj
